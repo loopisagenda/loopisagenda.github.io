@@ -135,9 +135,14 @@ main {
       cursor: pointer;
       transition: 0.5s;
       border-radius: 10px;
+      width: 30px;
     }
     button:hover {
       background-color: rgb(233, 232, 232);
+    }
+
+    img {
+      width: 100%;
     }
   }
 
