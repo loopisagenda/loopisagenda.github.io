@@ -5,14 +5,94 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./src/styles/main.scss" />
+  <link rel="stylesheet" href="./src/styles/main.scss"/>
   <link rel="shortcut icon" href="./src/assets/icon.png" type="image/x-icon" />
   <script type="module" src="./src/scripts/controller.js"></script>
   <title>Loopis Agenda | Agenda</title>
 </head>
 
 <body>
-  
+  <main class = "container">
+    <div class = "diasAgenda">
+      <ul>
+        <li>
+            <h1 class= "data"> 04/11</h1>
+            <h3 class="data">2022</h3>
+            <button>Hoje</button>
+        </li>
+        <li>
+          <h1 class= "data"> 06/11</h1>
+          <h3 class="data">2022</h3>
+          <button>Amanhã</button>
+        </li>
+        <li>
+          <h1 class= "data"> 09/11</h1>
+          <h3 class="data">2022</h3>
+          <button>Hoje</button>
+        </li>
+      </ul>
+      <button id = "adicionar">+</button>
+    </div>
+
+    <div class = agendamento>
+      <ul>
+        <h1>Atividades do dia: 02/11/2022</h1>
+      </ul>
+
+      <ul>
+        <li>
+          Fazer almoço
+          <h4>Fazer uma lasanha de frango com molho branco, um bife e picanha
+            e depois tomar uma cerveja
+          </h4>
+          <button>
+            <img src="src/assets/edit.png" alt="edit png" width="22px">
+          </button>
+          <button>
+            <img src="src/assets/delete.png" alt="delete png" width="20px">
+          </button>
+        </li>
+        <li>
+          Fazer almoço
+          <h4>Fazer uma lasanha de frango com molho branco, um bife e picanha
+            e depois tomar uma cerveja
+          </h4>
+          <button>
+            <img src="src/assets/edit.png" alt="edit png" width="22px">
+          </button>
+          <button>
+            <img src="src/assets/delete.png" alt="delete png" width="20px">
+          </button>
+        </li>        
+      </ul>
+      
+      <div id = "addNew">
+        <button>Insira uma nova atividade do dia</button>
+      </div>
+      
+      <div class = "adicionarTarefa">
+        <h1>Nova Atividade</h1>
+        <form action="" method="post">
+          <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="name" placeholder="Escreva a Atividade" required>
+          </div>
+          <div>
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description" cols="57" rows="1" 
+            placeholder="Escreva a Descrição" required></textarea>
+          </div>
+          <div>
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" required>
+          </div>
+          <button>Adicionar</button>
+          
+        </form>
+      </div>
+
+    </div> 
+  </main>
 </body>
 
 </html>

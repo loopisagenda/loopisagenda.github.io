@@ -2,9 +2,213 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 html {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
+.container{
+  display:flex;
+  flex-direction: row;
+  background-image: linear-gradient(45deg, rgb(131, 49, 224), rgb(17, 17, 114));
+  align-items: center;
+}
+.diasAgenda{
+  margin-right: 5rem;
+  padding: 30px;
+  min-height: 100vh;
+  min-width: 25vh;
+  background-color: rgba(64, 51, 247, 0.486);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px ridge rgba(0, 0, 0, 0.486);
+
+  h4{
+    color: white;
+  }
+  ul{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  li{
+    text-align: center;
+    padding: 20px 30px;
+    margin-bottom: 10px;
+    background-color: rgba(196, 170, 255, 0.719);
+    border-radius: 25px;
+  }
+  h1{
+    font-size: 40px;
+    font-weight:500;
+  }
+  h3{
+    padding-bottom: 10px;
+
+  }
+  button{
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    padding: 2px 15px;
+  }
+  button:hover{
+    background-color: rgb(255, 253, 151);
+    box-shadow: 0px 0px 5px rgb(255, 253, 151);;
+  }
+  #adicionar{
+    background-color: yellow;
+    color: rgb(59, 23, 219);
+    font-size: 25px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 100%;
+
+  }
+}
+
+.agendamento {
+  margin: 60px;
+  min-width: 75vw;
+  text-align: center;
+  place-items: center;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #AFAFAF;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  ul{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    
+    li{
+      margin-top: 10px;
+      background-color: #AFAFAF;
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      place-items: center;
+      padding: 20px;
+      border-radius: 50px;
+      margin-top: 20px;
+    }
+    h4{
+      background-color: rgb(233, 232, 232);
+      margin-left: 10px;
+      margin-right: 10px;
+      border-radius: 50px;
+      padding: 8px;
+      width: 500px;
+    }
+    button{
+      border:none;
+      background-color: #AFAFAF;
+      padding: 5px;
+      cursor: pointer;
+      transition: 0.5s;
+      border-radius: 10px;
+    }
+    button:hover{
+      background-color: rgb(233, 232, 232);
+    }
+  }
+
+  #addNew{
+    margin-top: 25rem;
+    margin-bottom: 30px;
+
+    button{
+      background-color: rgb(255, 223, 116);
+      padding: 10px 30px;
+      font-size: 25px;
+      border-radius: 80px;
+      border: 1px solid rgb(223, 223, 223);
+    }
+    button:hover{
+      background-color: rgb(248, 236, 69);
+      box-shadow: 0px 0px 10px rgb(241, 239, 73);
+    }
+  }
+}
+
+.adicionarTarefa{
+  position: absolute;
+  min-width: 70vh;
+  min-height: 60vh;
+  background-color: rgb(219, 219, 219);
+  border: 1px solid rgb(209, 208, 208);
+  box-shadow: 0px 0px 25px rgb(148, 148, 148);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  display: none;
+
+  h1{
+    margin-top: 40px;
+    padding: 30px 60px;
+    background-color: #AFAFAF;
+    max-width: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+
+  }
+  #name{
+    width: 50vh;
+  }
+  label{
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: large;
+  }
+  input{
+    background-color: #AFAFAF;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    outline: 1px solid rgb(165, 165, 165);
+  }
+  textarea{
+    background-color: rgb(219, 219, 219);
+    padding: 10px;
+    border: 15px solid #AFAFAF;
+    border-radius: 30px;
+    outline: 1px solid rgb(165, 165, 165);
+  }
+  button{
+    border: none;
+    border-radius: 40px;
+    background-color: rgb(102, 12, 185);
+    color: white;
+    font-size: 20px;
+    padding: 15px 25px;
+    margin-top:50px;
+    transition: .5s;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+  button:hover{
+    background-color: rgb(135, 47, 218);
+  }
+}
+
