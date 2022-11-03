@@ -39,12 +39,10 @@
             </button>
           </li>
         </ul>
-
           <button id="add-task-btn">Insira uma nova atividade do dia</button>
-        </div>
 
         <!-- Formulário para adicioanr tarefa -->
-        <div class="adicionarTarefa">
+        <div class="addTask">
           <h1>Nova Atividade</h1>
           <form action="" method="post">
             <div>
@@ -62,21 +60,61 @@
                 name="description"
                 id="description"
                 cols="57"
-                rows="1"
+                rows="5"
                 placeholder="Escreva a Descrição"
                 required
               ></textarea>
             </div>
             <div>
               <label for="data">Data:</label>
-              <input type="date" name="data" id="data" required />
+              <input type="date" name="data" id="date" required />
             </div>
-            <button>Adicionar</button>
+            <button id="saveTask">Adicionar</button>
           </form>
         </div>
-      </div>
 
-      
+        <!-- Formulário de edição da tarefa inserida na agenda -->
+        <div class="editTask">
+          <h3 id="receptTaskName">Atividade: xxxx </h3> <!--receberá o título atual da tarefa-->
+          <form action="" method="post">
+            <div>
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                id="editTaskName" 
+                placeholder="Escreva a Atividade"
+                required
+              /><!--receberá o titulo atual da tarefa para fazer edição-->
+            </div>
+            <div>
+              <label for="description">Descrição:</label>
+              <textarea
+                name="description"
+                id="editDescription"
+                cols="57"
+                rows="5"
+                placeholder="Escreva a Descrição"
+                required
+              ></textarea><!--receberá a descrição atual da tarefa para fazer edição-->
+            </div>
+            <div>
+              <label for="data">Data:</label>
+              <input type="date" name="data" id="dateEdit" required /><!--receberá a data atual da tarefa para editar-->
+            </div>
+            <button id="cancelEdit">Cancelar</button>
+            <button id="saveEdit">Adicionar</button>
+          </form>
+        </div>
+        
+        <div class="deleteTask">
+          <p>Deseja excluir a seguinte atividade:</p>
+          <h2 id="receptTaskName">Atividade aqui</h2><!--receberá o título atual da tarefa-->
+          <div>
+            <button id="cancelDelete">Cancelar</button>
+            <button id="approveDelete">Deletar</button>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
