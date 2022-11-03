@@ -1,5 +1,7 @@
 import * as model from "./model.js";
 import DaysView from "./views/daysView.js";
+import AddDayView from "./views/addDayView.js";
+import AddTaskView from "./views/addTaskView.js";
 
 //essa função será chamada assim que a página carregar
 function controlDays() {
