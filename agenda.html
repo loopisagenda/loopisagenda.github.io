@@ -20,8 +20,7 @@
         <ul id="days-list">
           
         </ul>
-          <button id="add-day-btn">+</button>
-        </div>
+          <button id="add-task-date-btn">+</button>
       </div>
 
       <div id="tasks-container">
@@ -41,10 +40,10 @@
         </ul>
         <button id="add-task-btn">Insira uma nova atividade do dia</button>
 
-        <!-- Formulário para adicioanr tarefa -->
-        <div id="add-task-form" class="hidden">
+        <!-- Formulário para adicioanr tarefa e data -->
+        <div id="add-task-date" class="hidden">
           <h1>Nova Atividade</h1>
-          <form action="" method="post">
+          <form id="saveTaskDate">
             <div>
               <label for="nome">Nome:</label>
               <input
@@ -69,18 +68,35 @@
               <label for="data">Data:</label>
               <input type="date" name="data" id="date" required />
             </div>
-            <button id="saveTask">Adicionar</button>
+            <button>Adicionar</button>
           </form>
         </div>
 
-        <!-- Formulário para adicionar um novo dia na agenda -->
-        <div id="add-day-form" class="hidden">
-          <h2>Adicionar Dia</h2>
-          <form>
+        <!-- Formulário para adicioanr uma nova tarefa a uma data escolhida -->
+        <div id="add-task-form" class="hidden">
+          <h1>Nova Atividade</h1>
+          <form id="saveTask">
             <div>
-              <input type="date" name="new-day-date" id="new-day-date" required>
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                id="nameTask"
+                placeholder="Escreva a Atividade"
+                required
+              />
             </div>
-            <button type="submit">Adicionar</button>
+            <div>
+              <label for="description">Descrição:</label>
+              <textarea
+                name="description"
+                id="descriptionTask"
+                cols="57"
+                rows="5"
+                placeholder="Escreva a Descrição"
+                required
+              ></textarea>
+            </div>
+            <button>Adicionar</button>
           </form>
         </div>
 

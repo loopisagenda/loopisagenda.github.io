@@ -59,7 +59,7 @@ main {
     background-color: rgb(255, 253, 151);
     box-shadow: 0px 0px 5px rgb(255, 253, 151);
   }
-  #add-day-btn {
+  #add-task-date-btn {
     align-items: center;
     background-color: yellow;
     border-radius: 100%;
@@ -74,6 +74,9 @@ main {
 
     &:hover {
       box-shadow: 0px 0px 10px yellow;
+    }
+    &:focus{
+      outline: none;
     }
   }
 }
@@ -167,12 +170,15 @@ main {
       background-color: rgb(248, 236, 69);
       box-shadow: 0px 0px 10px rgb(241, 239, 73);
     }
+    &:focus{
+      outline: none;
+    }
   }
 }
 
+#add-task-date,
 #add-task-form,
-#edit-task-form,
-#add-day-form {
+#edit-task-form{
   align-items: center;
   background-color: rgb(219, 219, 219);
   border: 1px solid rgb(209, 208, 208);
@@ -208,8 +214,8 @@ main {
     flex-direction: column;
     margin: 10px 0;
   }
-  #name {
-    width: 41vh;
+  #name, #nameTask {
+    width: 50vh;
   }
   label {
     font-size: large;
@@ -241,6 +247,7 @@ main {
     font-weight: bold;
     padding: 15px 25px;
     transition: 0.3s;
+    margin-top: 5px;
 
     &:hover {
       background-color: rgb(135, 47, 218);
