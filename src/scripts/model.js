@@ -4,18 +4,7 @@ export const state = {
 
 export function getData() {
   //imagine que essa função tenha ido até o localStorage pegar os dados
-  const dados = [
-    {
-      date: "04/11",
-      year: "2022",
-      tasks: [],
-    },
-    {
-      date: "05/11",
-      year: "2022",
-      tasks: [],
-    },
-  ];
+  const dados = JSON.parse(localStorage.getItem("@data")).data;
 
   state.days = [...dados];
 }
