@@ -39,10 +39,10 @@
             </button>
           </li>
         </ul>
-          <button id="add-task-btn">Insira uma nova atividade do dia</button>
+        <button id="add-task-btn">Insira uma nova atividade do dia</button>
 
         <!-- Formulário para adicioanr tarefa -->
-        <div class="addTask">
+        <div id="add-task-form" class="hidden">
           <h1>Nova Atividade</h1>
           <form action="" method="post">
             <div>
@@ -74,7 +74,7 @@
         </div>
 
         <!-- Formulário de edição da tarefa inserida na agenda -->
-        <div class="editTask">
+        <div id="edit-task-form" class="hidden">
           <h3 id="receptTaskName">Atividade: xxxx </h3> <!--receberá o título atual da tarefa-->
           <form action="" method="post">
             <div>
@@ -107,7 +107,7 @@
         </div>
 
         <!-- Layout para remoção de tarefa da agenda -->
-        <div class="deleteTask">
+        <div id="delete-task-warning" class="hidden">
           <p>Deseja excluir a seguinte atividade:</p>
           <h2 id="receptTaskName">Atividade aqui</h2><!--receberá o título atual da tarefa-->
           <div>
