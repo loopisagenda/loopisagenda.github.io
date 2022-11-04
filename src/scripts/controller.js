@@ -7,6 +7,7 @@ import FormTasksView from "./views/FormTasksView.js";
 function controlDays() {
   //o model atualizará o estado
   model.getData();
+  model.state.days.map(v => v.diff = model.getDiffProp(v));
   //o controller manda a view atualizar o html em tela
   DaysView.render(model.state.days);
 }
@@ -18,7 +19,9 @@ function controlDays() {
  * @todo chamar a função addDay do model com o day, month e year como parâmetros
  * @todo chamar o método render da classe DaysView com o estado atualizado
  */
-function controlAddDay(date) {}
+function controlAddDay(date) {
+  model.addDay(date);
+}
 
 function init() {
   //controller avisa para a view avisá-lo quando a página carregar

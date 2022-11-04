@@ -18,21 +18,6 @@ import { v4 as uuid } from "uuid";
 //   }
 // ]
 
-export const state = {
-  days: [],
-  targetDay: "", //isso é importante para sabermos quais tarefas precisamos renderizar com base no dia clicado pelo usuário
-};
-
-export function getData() {
-  const dias = [{ day: "04", month: "11", year: "2022" }];
-
-  localStorage.setItem("data", JSON.stringify(dias));
-
-  const dados = JSON.parse(localStorage.getItem("data"));
-
-  state.days = [...dados];
-}
-
 /**
  * Recebe dia mês e ano do dia a ser criado e gera um id aleatório para ele antes de inserí-lo no estado
  * @param {string} day dia em questão
@@ -49,4 +34,63 @@ export function getData() {
  * @todo o id deve ser aleatório, para gerá-lo utilize uuid();
  *
  */
-export function addDay(day, month, year) {}
+
+
+export const state = {
+  days: [],
+  targetDay: "", //isso é importante para sabermos quais tarefas precisamos renderizar com base no dia clicado pelo usuário
+};
+
+export function getFormattedDateUSA(date) {
+  return `${date.substr(5, 2)}/${date.substr(8, 2)}/${date.substr(0, 4)}`;
+}
+
+export function getFormattedDateBRA(date) {
+  return `${date.substr(8, 2)}/${date.substr(5, 2)}/${date.substr(0, 4)}`;
+}
+
+export function getData() {
+  const testData = `[{"day":"04","month":"11","year":"2022"}]`;
+  const data = [...((JSON.parse(localStorage.getItem("data") ?? testData)))];
+  localStorage.setItem("data", JSON.stringify(data));
+  state.days = data;
+}
+
+export function addDay(stringDate) {
+  const date = new Date(getFormattedDateUSA(stringDate));
+  const newDay = {
+    id: uuid(),
+    day: date.getDate(),
+    month: date.getMonth()+1,
+    year: date.getFullYear(),
+    tasks: [],
+  }
+  getData();
+  state.days = [
+    ...state.days,
+    newDay,
+  ];
+  localStorage.setItem("data", JSON.stringify(state.days));
+}
+
+export function getDiffDays(date1, date2Data) {
+  const date2 = new Date(`${date2Data.month}/${date2Data.day}/${date2Data.year}`);
+  const diffTime = (date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
+}
+
+export function getDiffProp(date) {
+  const currentDate = new Date();
+  const diffDays = getDiffDays(currentDate, date);
+  if(diffDays == 0) {
+    return "Hoje";
+  } else if(diffDays == 1) {
+    return "Amanhã";
+  } else if(diffDays == -1) {
+    return "Ontem";
+  } else if(diffDays < 0) {
+    return `${-diffDays} dias atrás`;
+  }
+  return `Daqui a ${diffDays} dias`;
+}

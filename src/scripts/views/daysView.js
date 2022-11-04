@@ -19,10 +19,10 @@ class DaysView extends View {
     //para cada dia existente, iremos inserir no container(_parentElement)
     days.forEach((day) => {
       this._parentElement.innerHTML += `
-            <li class="day">
+          <li class="day">
             <h2>${day.day}/${day.month}</h2>
             <h2>${day.year}</h2>
-            <span>Hoje</span>
+            <span>${day.diff}</span>
           </li>
         `;
     });
