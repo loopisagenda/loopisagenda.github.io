@@ -7,7 +7,6 @@ import FormTasksView from "./views/FormTasksView.js";
 function controlDays() {
   //o model atualizará o estado
   model.getData();
-  model.state.days.map(v => v.diff = model.getDiffProp(v));
   //o controller manda a view atualizar o html em tela
   DaysView.render(model.state.days);
 }
@@ -21,11 +20,19 @@ function controlDays() {
  */
 function controlAddDay(date) {
   model.addDay(date);
+  DaysView.render(model.state.days);
+}
+
+function controlDeleteDay(dayId) {
+  model.removeDay(dayId);
+  DaysView.render(model.state.days);
 }
 
 function init() {
   //controller avisa para a view avisá-lo quando a página carregar
   DaysView.handleLoadEvent(controlDays);
+  DaysView.handleClickEvent();
+  DaysView.handleDeleteEvent(controlDeleteDay);
   FormDaysView._handleSubmitEvent(controlAddDay);
 }
 

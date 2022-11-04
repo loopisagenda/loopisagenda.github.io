@@ -25,7 +25,6 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 30px;
   width: 15vw;
 
   ul {
@@ -34,21 +33,47 @@ main {
     flex-direction: column;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     padding: 10px;
+    width: 100%;
   }
   li {
     background-color: rgba(196, 170, 255, 0.719);
     border-radius: 25px;
     margin-bottom: 10px;
-    padding: 20px 30px;
+    padding: 10px 20px;
     text-align: center;
+    width: 100%;
+    position: relative;
+
+    button.delete-day {
+      position: absolute;
+      border: none;
+      background-color: transparent;
+      top: 0;
+      right: 0;
+      background-color: whitesmoke;
+      padding: 2px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      img {
+        width: 15px;
+      }
+    }
   }
-  h1 {
-    font-size: 40px;
-    font-weight: 500;
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
   }
+
   h3 {
-    padding-bottom: 10px;
+    font-size: 0.8rem;
+    background-color: rgba(36, 8, 102, 0.719);
+    padding: 2px 10px;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 5px auto;
   }
+
   span {
     border-radius: 50px;
     border: none;
@@ -306,6 +331,51 @@ main {
     &:hover {
       background-color: #f12f2f;
       box-shadow: 0px 0px 5px #da2a2a;
+    }
+  }
+}
+
+#delete-day-warning {
+  width: 500px;
+  position: absolute;
+  background-color: rgb(219, 219, 219);
+  padding: 20px;
+  border-radius: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    button {
+      padding: 5px 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      color: whitesmoke;
+    }
+
+    #delete-day-confirm-btn {
+      background-color: rgb(26, 70, 26);
+    }
+
+    #delete-day-cancel-btn {
+      background-color: rgb(109, 36, 21);
     }
   }
 }
