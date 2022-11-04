@@ -79,7 +79,10 @@ function getDiffProp(date) {
 
 export function getData() {
   const data = JSON.parse(localStorage.getItem("data")) || "";
-  if (data != "") state.days = data;
+  if (data != "") {
+    state.days = data;
+    state.days.forEach((day) => (day.diff = getDiffProp(day)));
+  }
 }
 
 export function addDay(stringDate) {
