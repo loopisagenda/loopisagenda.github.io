@@ -20,7 +20,11 @@
   "homepage": "https://github.com/loopisagenda/loopisagenda.github.io#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
+    "@types/uuid": "^8.3.4",
     "parcel": "^2.7.0",
     "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }

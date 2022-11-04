@@ -20,7 +20,7 @@ class DaysView extends View {
     days.forEach((day) => {
       this._parentElement.innerHTML += `
             <li class="day">
-            <h2>${day.date}</h2>
+            <h2>${day.day}/${day.month}</h2>
             <h2>${day.year}</h2>
             <span>Hoje</span>
           </li>

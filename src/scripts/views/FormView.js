@@ -2,6 +2,7 @@ class FormView {
   _parentElement;
   _data;
   _actBtn;
+  _formElement;
 
   render(data) {
     //os dados da classe são atualizados
