@@ -14,16 +14,12 @@ class DaysView extends View {
     this._cancelBtn.addEventListener("click", this._hiddenWarning.bind(this));
   }
 
+  //gera o html de cada dia e o insere na lista
   _generateHtml() {
-    /**
-     * Primeiro devemos limpar o html presente no elemento pai para não haver conflitos. Lembrando que esse método clear está presente na classe pai(View), por isso a classe DaysView consegue utilizá-lo
-     */
     this._clear();
 
-    //aqui guardei o valor de _data em uma variável com um nome mais autoexplicativo
     const days = this._data;
 
-    //para cada dia existente, iremos inserir no container(_parentElement)
     days.forEach((day) => {
       this._parentElement.innerHTML += `
           <li id="${day.id}" class="day">
@@ -38,14 +34,17 @@ class DaysView extends View {
     });
   }
 
+  //espera o carregamento na tela e executa a função handler(passada pelo controller) quando o evento ocorrer
   handleLoadEvent(handler) {
-    /**quando a página carregar, a view executa a função passada pelo controller.
-     * Ela não tem a menor ideia do que essa função faz, ela apenas obedece ao controller.
-     */
     window.addEventListener("load", () => handler());
   }
 
-  handleClickEvent() {
+  /**
+   *
+   * obersa por um click na lista dos dias e observa se o ponto clicado é um dia ou um botão de deletar dia. Se foi um
+   * botão então ela mostra o aviso de deletar dia. Caso tenha sido um dia, ela executa a função handler passada pelo controller
+   */
+  handleClickEvent(handler) {
     this._parentElement.addEventListener("click", (e) => {
       const button = e.target.closest("button");
       const dayId = e.target.closest("li")?.id;
@@ -53,10 +52,13 @@ class DaysView extends View {
       if (button && dayId) {
         this._currentDay = dayId;
         this._showWarning();
+      } else if (dayId) {
+        handler(dayId);
       }
     });
   }
 
+  //observa se o botão de confirmação para deletar um dia foi clicado e executa a função handler passada pelo controller caso isso aconteça
   handleDeleteEvent(handler) {
     this._confirmBtn.addEventListener("click", () => {
       handler(this._currentDay);
@@ -64,10 +66,12 @@ class DaysView extends View {
     });
   }
 
+  //mostra o aviso de remoção
   _showWarning() {
     this._warningElement.classList.remove("hidden");
   }
 
+  //oculta o aviso de remoção
   _hiddenWarning() {
     this._warningElement.classList.add("hidden");
   }

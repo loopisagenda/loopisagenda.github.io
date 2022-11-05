@@ -1,24 +1,16 @@
-/**
- *
- * Essa é a classe pai. Todas as outras classes herdarão os métodos dessa classe
- *
- * Todos os métodos e variáveis que contenham _(underline) não podem ser acessados nem manipulados
- * fora de sua classe
- *
- */
-
+//Essa é a classe pai de todas as views exceto os formulários
 class View {
   //cada classe herdeira tem o seu próprio elemento pai e seus próprios dados
   _parentElement;
   _data;
 
+  //ajusta os dados corretamente (na classe herdeira) e chama o método para gerar o html que é diferente para cada classe herdeira
   render(data) {
-    //os dados da classe são atualizados
     this._data = data;
-    //depois é chamado o método generateHtml, que deve estar presente na classe herdeira
     this._generateHtml();
   }
 
+  //limpa o elemento pai
   _clear() {
     this._parentElement.innerHTML = "";
   }
