@@ -43,9 +43,9 @@ class TasksView extends View {
 
   //mostra o container das tarefas e ajusta a data corretamente
   showContainer(date) {
-    this._currentDate = `${String(date.day).padStart(2, "0")}/${date.month}/${
-      date.year
-    }`;
+    this._currentDate = `${String(date.day).padStart(2, "0")}/${String(
+      date.month
+    ).padStart(2, "0")}/${date.year}`;
     this._currentDay.textContent = `Atividades do dia: ${this._currentDate}`;
     this._container.classList.remove("hidden");
     this._clear();
