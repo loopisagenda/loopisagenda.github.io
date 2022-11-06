@@ -47,6 +47,19 @@ function getDiffProp(date) {
   return `Daqui a ${diffDays} dias`;
 }
 
+//gera uma propriedade sumSort para ordenamento do array
+function generateSumSort(day, month, year) {
+  const strDay = String(day);
+  const strMonth = String(month);
+  const strYear = String(year);
+
+  const strSumSort = String(strYear + strMonth + strDay).padEnd(8, "0");
+
+  const sumSort = Number(strSumSort);
+
+  return sumSort;
+}
+
 //pega a data do localStorage no primeiro carregamento caso exista
 export function getData() {
   const data = JSON.parse(localStorage.getItem("data")) || "";
@@ -68,6 +81,11 @@ export function addDay(stringDate) {
     day: date.getDate(),
     month: date.getMonth() + 1,
     year: date.getFullYear(),
+    sumSort: generateSumSort(
+      date.getDate(),
+      date.getMonth() + 1,
+      date.getFullYear()
+    ),
     diff: getDiffProp({
       day: date.getDate(),
       month: date.getMonth() + 1,
@@ -89,6 +107,7 @@ export function addDay(stringDate) {
   if (!duplicated) {
     state.days = [...state.days, newDay];
     setLocalData();
+    console.log(state.days);
   } else {
     alert("Um dia com esta data já existe");
   }
@@ -178,6 +197,11 @@ export function editTask(
         month: date.getMonth() + 1,
         year: date.getFullYear(),
       }),
+      sumSort: generateSumSort(
+        date.getDate(),
+        date.getMonth() + 1,
+        date.getFullYear()
+      ),
       tasks: [
         {
           title: newTaskTitle,
