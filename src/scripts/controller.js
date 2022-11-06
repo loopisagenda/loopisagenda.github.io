@@ -37,10 +37,30 @@ function controlAddTask(taskTitle, taskDesctiption) {
   TasksView.render(model.state.targetDay.tasks);
 }
 
+function controlDeleteTask(taskId) {
+  model.deleteTask(taskId);
+  TasksView.render(model.state.targetDay.tasks);
+  DaysView.render(model.state.days);
+}
+
+function controlEditTask(
+  newTaskTitle,
+  newTaskDescription,
+  newTaskDate,
+  taskId
+) {
+  model.editTask(newTaskTitle, newTaskDescription, newTaskDate, taskId);
+  TasksView.showContainer(model.state.targetDay);
+  DaysView.render(model.state.days);
+  TasksView.render(model.state.targetDay.tasks);
+}
+
 function init() {
   DaysView.handleLoadEvent(controlDays);
   DaysView.handleClickEvent(controlCurrentDay);
   DaysView.handleDeleteEvent(controlDeleteDay);
+  TasksView.handleDeleteTaskConfirmation(controlDeleteTask);
+  TasksView.handleSubmitEditFormEvent(controlEditTask);
   FormDaysView.handleSubmitEvent(controlAddDay);
   FormTasksView.handleSubmitEvent(controlAddTask);
 }

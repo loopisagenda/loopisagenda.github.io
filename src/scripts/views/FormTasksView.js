@@ -18,6 +18,8 @@ class AddTaskView extends FormView {
       const tskDescription = form[1].value;
 
       this._hiddenForm();
+      e.target[0].value = "";
+      e.target[1].value = "";
       handler(tskTitle, tskDescription);
     });
   }

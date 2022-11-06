@@ -58,6 +58,9 @@ export function getData() {
 
 //recebe uma data no formato yyyy-mm-d, separa em propiedades, gera um id aleatório para o dia e o adiciona no estado
 export function addDay(stringDate) {
+  //tira a duplicação de dias na aba dias de tarefas
+  let duplicated;
+
   const date = new Date(getFormattedDateUSA(stringDate));
 
   const newDay = {
@@ -72,9 +75,23 @@ export function addDay(stringDate) {
     }),
     tasks: [],
   };
-  getData();
-  state.days = [...state.days, newDay];
-  setLocalData();
+
+  state.days.forEach((day) => {
+    if (
+      day.day == newDay.day &&
+      day.month == newDay.month &&
+      day.year == newDay.year
+    ) {
+      duplicated = true;
+    }
+  });
+
+  if (!duplicated) {
+    state.days = [...state.days, newDay];
+    setLocalData();
+  } else {
+    alert("Um dia com esta data já existe");
+  }
 }
 
 //deleta um dia com um id específico
@@ -99,4 +116,78 @@ export function addTask(taskTitle, taskDescription) {
   const i = state.days.findIndex((day) => day.id == state.targetDay.id);
   state.days[i].tasks.push(tskObj);
   setLocalData();
+}
+
+//remove uma tarefa
+export function deleteTask(taskId) {
+  let dayIndex, dayId;
+
+  state.days.forEach((day, dayi) => {
+    day.tasks.forEach((task) => {
+      if (task.id == taskId) {
+        dayIndex = dayi;
+        dayId = day.id;
+      }
+    });
+  });
+
+  state.days[dayIndex].tasks = state.days[dayIndex].tasks.filter(
+    (task) => task.id != taskId
+  );
+
+  setTargetDay(dayId);
+  setLocalData();
+}
+
+//o processo de editar task na vedade é deletar a tarefa e recriá-la
+export function editTask(
+  newTaskTitle,
+  newTaskDescription,
+  newTaskDate,
+  taskId
+) {
+  deleteTask(taskId);
+  let duplicated = false;
+
+  //separa a string newTaskDate em variáveis
+  const date = new Date(getFormattedDateUSA(newTaskDate));
+  const newDay = date.getDate();
+  const newMonth = date.getMonth() + 1;
+  const newYear = date.getFullYear();
+
+  //verifica se a nova data é um dia já existente e adiciona a tarefa naquele dia
+  state.days.forEach((day) => {
+    if (day.day == newDay && day.month == newMonth && day.year == newYear) {
+      duplicated = true;
+      setTargetDay(day.id);
+      addTask(newTaskTitle, newTaskDescription);
+    }
+  });
+
+  //se o dia ainda nao existir, será preciso criar um novo dia. A diferença para a função addDay é que aqui já haverá uma tarefa em tasks
+  if (!duplicated) {
+    const date = new Date(getFormattedDateUSA(newTaskDate));
+
+    const newDay = {
+      id: uuid(),
+      day: date.getDate(),
+      month: date.getMonth() + 1,
+      year: date.getFullYear(),
+      diff: getDiffProp({
+        day: date.getDate(),
+        month: date.getMonth() + 1,
+        year: date.getFullYear(),
+      }),
+      tasks: [
+        {
+          title: newTaskTitle,
+          description: newTaskDescription,
+          id: taskId, //não é criado um novo id. O id antigo é reaproveitado
+        },
+      ],
+    };
+    state.days = [...state.days, newDay];
+    setTargetDay(newDay.id);
+    setLocalData();
+  }
 }

@@ -205,7 +205,7 @@ div.hidden {
 
 #add-day-form,
 #add-task-form,
-#edit-task-form {
+#edit-task-form-container {
   align-items: center;
   background-color: rgb(219, 219, 219);
   border: 1px solid rgb(209, 208, 208);
@@ -308,6 +308,9 @@ div.hidden {
   justify-content: center;
   position: absolute;
   width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   h2 {
     font-size: 1.2rem;

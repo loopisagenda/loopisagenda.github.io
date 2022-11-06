@@ -18,19 +18,9 @@ class DaysView extends View {
   _generateHtml() {
     this._clear();
 
-    const days = [];
+    const days = this._data;
 
-    //tira a duplicação de dias na aba dias de tarefas
-    this._data.forEach((item) => {
-      let duplicated = days.findIndex(readItem => {
-          return item.day == readItem.day;
-      }) > -1;
-      if(!duplicated) {
-          days.push(item);
-      }
-    });
-
-  // imprime na tela os dias de tarefas
+    // imprime na tela os dias de tarefas
     days.forEach((day) => {
       this._parentElement.innerHTML += `
           <li id="${day.id}" class="day">

@@ -66,39 +66,11 @@
         </form>
       </div>
 
-      <!-- Formulário para adicioanr uma nova tarefa a uma data escolhida -->
-      <div id="add-task-form" class="hidden">
-        <h1>Nova Atividade</h1>
-        <form id="saveTask">
-          <div>
-            <label for="nome">Nome:</label>
-            <input
-              type="text"
-              id="nameTask"
-              placeholder="Escreva a Atividade"
-              required
-            />
-          </div>
-          <div>
-            <label for="description">Descrição:</label>
-            <textarea
-              name="description"
-              id="descriptionTask"
-              cols="57"
-              rows="5"
-              placeholder="Escreva a Descrição"
-              required
-            ></textarea>
-          </div>
-          <button>Adicionar</button>
-        </form>
-      </div>
-
       <!-- Formulário de edição da tarefa inserida na agenda -->
-      <div id="edit-task-form" class="hidden">
+      <div id="edit-task-form-container" class="hidden">
         <h3 id="receptTaskName">Atividade: xxxx</h3>
         <!--receberá o título atual da tarefa-->
-        <form action="" method="post">
+        <form action="" method="post" id="form-edit-task">
           <div>
             <label for="nome">Nome:</label>
             <input
@@ -129,8 +101,8 @@
               required
             /><!--receberá a data atual da tarefa para editar-->
           </div>
-          <button id="cancelEdit">Cancelar</button>
-          <button id="saveEdit">Salvar</button>
+          <button type="button" id="cancelEdit">Cancelar</button>
+          <button type="submit" id="saveEdit">Salvar</button>
         </form>
       </div>
 

@@ -3,13 +3,23 @@ import editIcon from "../../assets/edit.png";
 import deleteIcon from "../../assets/delete.png";
 
 class TasksView extends View {
+  _editTaskFormContainer = document.getElementById("edit-task-form-container");
+  _editTaskForm = document.getElementById("form-edit-task");
+  _cancelEditBtn = document.getElementById("cancelEdit");
+  _confirmDelTaskBtn = document.getElementById("approveDelete");
+  _cancelDelTaskBtn = document.getElementById("cancelDelete");
+  _titleTaskForm = document.getElementById("receptTaskName");
   _currentDay = document.getElementById("current-day-container");
+  _currentTaskId = "";
   _container = document.getElementById("tasks-container");
   _currentDate = "";
+  _warningDeleteTask = document.getElementById("delete-task-warning");
 
   constructor() {
     super();
     this._parentElement = document.getElementById("tasks-list");
+    this._handleClickEvent();
+    this._handleExtraEvents();
   }
 
   //gera o html das tarefas obs: ainda não está pronto
@@ -18,7 +28,7 @@ class TasksView extends View {
     const tasks = this._data;
 
     tasks.forEach((task) => {
-      this._parentElement.innerHTML += `<li id="${tasks.id}" class="task">
+      this._parentElement.innerHTML += `<li id="${task.id}" class="task">
             <h2>${task.title}</h2>
             <p>${task.description}</p>
             <button type="button" class="edit-task-btn">
@@ -44,6 +54,87 @@ class TasksView extends View {
   //oculta o container das tarefas
   hiddeContainer() {
     this._container.classList.add("hidden");
+  }
+
+  //observa um clique do elemento pai e informa ao controller se o que foi clicado é o botão de editar ou de excluir
+  _handleClickEvent() {
+    this._parentElement.addEventListener("click", (e) => {
+      const task = e.target.closest(".task");
+      const taskTitle = task?.firstElementChild.textContent;
+
+      if (e.target.closest("button")?.classList.contains("edit-task-btn")) {
+        this._editTaskFormContainer.classList.remove("hidden");
+        this._titleTaskForm.textContent = `Atividade: ${taskTitle}`;
+        this._currentTaskId = task.id;
+      } else if (
+        e.target.closest("button")?.classList.contains("delete-task-btn")
+      ) {
+        this._currentTaskId = task.id;
+        this._showWarningDelete();
+      }
+    });
+  }
+
+  handleDeleteTaskConfirmation(handler) {
+    this._confirmDelTaskBtn.addEventListener("click", () => {
+      const taskId = this._currentTaskId;
+      this._hiddeWarningDelete();
+      handler(taskId);
+    });
+  }
+
+  //observa pelo envio do formulário de edição e executa o handler caso isso aconteça
+  handleSubmitEditFormEvent(handler) {
+    this._editTaskForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newTasktitle = e.target[0].value;
+      const newTaskDescription = e.target[1].value;
+      const newTaskDate = e.target[2].value;
+
+      this._hiddeEditForm();
+
+      handler(
+        newTasktitle,
+        newTaskDescription,
+        newTaskDate,
+        this._currentTaskId
+      );
+    });
+  }
+
+  //observa o clicar da tecla esc e do botão cancelar para esconder o formulário de edição
+  _handleExtraEvents() {
+    window.addEventListener("keydown", (e) => {
+      if (e.key == "Escape") {
+        this._editTaskFormContainer.classList.add("hidden");
+      }
+    });
+
+    this._cancelEditBtn.addEventListener(
+      "click",
+      this._hiddeEditForm.bind(this)
+    );
+
+    this._cancelDelTaskBtn.addEventListener(
+      "click",
+      this._hiddeWarningDelete.bind(this)
+    );
+  }
+
+  //esconde o formulário de edição
+  _hiddeEditForm() {
+    this._editTaskFormContainer.classList.add("hidden");
+    this._editTaskForm[0].value = "";
+    this._editTaskForm[1].value = "";
+    this._editTaskForm[2].value = "";
+  }
+
+  _showWarningDelete() {
+    this._warningDeleteTask.classList.remove("hidden");
+  }
+
+  _hiddeWarningDelete() {
+    this._warningDeleteTask.classList.add("hidden");
   }
 }
 
