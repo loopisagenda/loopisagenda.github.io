@@ -87,3 +87,16 @@ export function removeDay(dayId) {
 export function setTargetDay(dayId) {
   state.targetDay = state.days.find((day) => day.id == dayId);
 }
+
+//adiciona uma tarefa no dia alvo (target day)
+export function addTask(taskTitle, taskDescription) {
+  const tskObj = {
+    title: taskTitle,
+    description: taskDescription,
+    id: uuid(),
+  };
+
+  const i = state.days.findIndex((day) => day.id == state.targetDay.id);
+  state.days[i].tasks.push(tskObj);
+  setLocalData();
+}

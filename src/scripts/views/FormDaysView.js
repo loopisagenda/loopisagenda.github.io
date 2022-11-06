@@ -10,7 +10,7 @@ class FormDaysView extends FormView {
   }
 
   //observa se o usuário enviou o formulário e executa a função handler passada pelo controller caso isso aconteça
-  _handleSubmitEvent(handler) {
+  handleSubmitEvent(handler) {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
       const date = e.target[0].value;

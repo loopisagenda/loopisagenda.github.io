@@ -3,6 +3,7 @@ import DaysView from "./views/daysView.js";
 import TasksView from "./views/tasksView.js";
 import FormDaysView from "./views/FormDaysView.js";
 import FormTasksView from "./views/FormTasksView.js";
+import tasksView from "./views/tasksView.js";
 
 //carrega as tarefas caso existam no carregamento inicial
 function controlDays() {
@@ -27,13 +28,21 @@ function controlDeleteDay(dayId) {
 function controlCurrentDay(dayId) {
   model.setTargetDay(dayId);
   TasksView.showContainer(model.state.targetDay);
+  tasksView.render(model.state.targetDay.tasks);
+}
+
+//controla o funcionamento de adicionar tarefas
+function controlAddTask(taskTitle, taskDesctiption) {
+  model.addTask(taskTitle, taskDesctiption);
+  TasksView.render(model.state.targetDay.tasks);
 }
 
 function init() {
   DaysView.handleLoadEvent(controlDays);
   DaysView.handleClickEvent(controlCurrentDay);
   DaysView.handleDeleteEvent(controlDeleteDay);
-  FormDaysView._handleSubmitEvent(controlAddDay);
+  FormDaysView.handleSubmitEvent(controlAddDay);
+  FormTasksView.handleSubmitEvent(controlAddTask);
 }
 
 init();
