@@ -49,14 +49,14 @@ function getDiffProp(date) {
 
 //gera uma propriedade sumSort para ordenamento do array
 function generateSumSort(day, month, year) {
-  const strDay = String(day);
-  const strMonth = String(month);
-  const strYear = String(year);
+  const strDay = String(day).padStart(2, "0");
+  const strMonth = String(month).padStart(2, "0");
+  const strYear = String(year).padStart(2, "0");
 
-  const strSumSort = String(strYear + strMonth + strDay).padEnd(8, "0");
+  const strSumSort = String(strYear + strMonth + strDay);
 
   const sumSort = Number(strSumSort);
-
+  console.log(sumSort);
   return sumSort;
 }
 
@@ -107,7 +107,6 @@ export function addDay(stringDate) {
   if (!duplicated) {
     state.days = [...state.days, newDay];
     setLocalData();
-    console.log(state.days);
   } else {
     alert("Um dia com esta data já existe");
   }
