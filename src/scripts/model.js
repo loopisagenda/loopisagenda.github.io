@@ -56,7 +56,7 @@ function generateSumSort(day, month, year) {
   const strSumSort = String(strYear + strMonth + strDay);
 
   const sumSort = Number(strSumSort);
-  console.log(sumSort);
+
   return sumSort;
 }
 
@@ -110,6 +110,9 @@ export function addDay(stringDate) {
   } else {
     alert("Um dia com esta data já existe");
   }
+
+  // ordenação do array
+  state.days.sort((a,b) => a.sumSort.toString().localeCompare(b.sumSort));
 }
 
 //deleta um dia com um id específico

@@ -24,9 +24,9 @@ class DaysView extends View {
     days.forEach((day) => {
       this._parentElement.innerHTML += `
           <li id="${day.id}" class="day">
-            <h2>${String(day.day).padStart(2, "0")}/${day.month}</h2>
-            <h2>${day.year}</h2>
-            <h3>${day.diff}</h3>
+            <h2>${String(day.day).padStart(2, "0")}/${String(day.month).padStart(2, "0")}</h2>
+            <h3>${day.year}</h3>
+            <h4>${day.diff}</h4>
             <button type="button" class="delete-day">
               <img src="${trashIcon}"/>
             </button>
