@@ -69,11 +69,6 @@ export function getData() {
   }
 }
 
-//ordena os dias
-function sortDays() {
-  state.days.sort((a, b) => a.sumSort.toString().localeCompare(b.sumSort));
-}
-
 //recebe uma data no formato yyyy-mm-d, separa em propiedades, gera um id aleatório para o dia e o adiciona no estado
 export function addDay(stringDate) {
   //tira a duplicação de dias na aba dias de tarefas
@@ -111,11 +106,13 @@ export function addDay(stringDate) {
 
   if (!duplicated) {
     state.days = [...state.days, newDay];
-    sortDays();
     setLocalData();
   } else {
     alert("Um dia com esta data já existe");
   }
+
+  // ordenação do array
+  state.days.sort((a,b) => a.sumSort.toString().localeCompare(b.sumSort));
 }
 
 //deleta um dia com um id específico
@@ -217,7 +214,6 @@ export function editTask(
     };
     state.days = [...state.days, newDay];
     setTargetDay(newDay.id);
-    sortDays();
     setLocalData();
   }
 }

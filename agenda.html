@@ -21,20 +21,24 @@
         <button id="add-day-btn">+</button>
       </div>
 
-      <div id="tasks-container" class="hidden">
-        <h1 id="current-day-container"></h1>
+      <div id="tasks-container">
+        <h1 id="current-day-container">Não há tarefas para visualizar, clique no + para adicionar ou em alguma tarefa para exibir.</h1>
 
-        <ul id="tasks-list"></ul>
-        <button id="add-task-btn">Insira uma nova atividade do dia</button>
+        <ul id="tasks-list" ></ul>
+        <button id="add-task-btn" class="hidden">Insira uma nova atividade do dia</button>
       </div>
 
       <!-- Formulário para adicionar dia -->
       <div id="add-day-form" class="hidden">
+        <h4>Nova Data</h4>
         <form action="#" id="form-day">
-          <div>
+          <div id="divBtn">
             <input type="date" name="new-day" id="new-day" required />
           </div>
-          <button type="submit">Adicionar dia</button>
+          <div id="divBtn">
+            <button type="button" id="cancelAddDay">Cancelar</button>
+            <button type="submit">Adicionar</button>
+          </div>
         </form>
       </div>
 
@@ -62,7 +66,10 @@
               required
             ></textarea>
           </div>
-          <button>Adicionar</button>
+          <div id="divBtn">
+            <button type="button" id="cancelAddTask">Cancelar</button>
+            <button type="submit">Adicionar</button>
+          </div>
         </form>
       </div>
 
@@ -101,15 +108,17 @@
               required
             /><!--receberá a data atual da tarefa para editar-->
           </div>
-          <button type="button" id="cancelEdit">Cancelar</button>
+          <div id="divBtn">
+            <button type="button" id="cancelEdit">Cancelar</button>
           <button type="submit" id="saveEdit">Salvar</button>
+          </div>
         </form>
       </div>
 
       <!-- Layout para remoção de tarefa da agenda -->
       <div id="delete-task-warning" class="hidden">
         <p>Deseja excluir a seguinte atividade:</p>
-        <h2 id="receptTaskName">Atividade aqui</h2>
+        <h2 id="receptTaskNameDelete">Atividade aqui</h2>
         <!--receberá o título atual da tarefa-->
         <div>
           <button id="cancelDelete">Cancelar</button>

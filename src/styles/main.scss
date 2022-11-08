@@ -17,9 +17,10 @@ main {
   flex-direction: row;
 }
 
-div.hidden {
+.hidden {
   display: none !important;
 }
+
 
 #days-container {
   align-items: center;
@@ -66,13 +67,21 @@ div.hidden {
       background-color: transparent;
       top: 0;
       right: 0;
-      background-color: whitesmoke;
       padding: 2px;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 7px;
+      margin-right: 7px;
+      transition: .2s;
+      padding-top: 4px;
+
+      &:hover{
+        background-color: rgba(92, 64, 156, 0.815);
+      }
 
       img {
         width: 15px;
+        filter: invert(1);
       }
     }
   }
@@ -240,6 +249,7 @@ div.hidden {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  place-items: center;
 
   h1 {
     background-color: #afafaf;
@@ -255,16 +265,28 @@ div.hidden {
     font-size: 1.1rem;
     margin-top: 10px;
   }
-
+  h4{
+    font-size: 1.5rem;
+    color: rgb(51, 51, 51);
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+    padding: 10px;
+  }
   div {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
     margin: 10px 0;
   }
+  #divBtn{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+  }
   #name,
-  #nameTask {
-    width: 50vh;
+  #nameTask,
+  #editTaskName {
+    width:55vh;
   }
   label {
     font-size: large;
@@ -297,19 +319,20 @@ div.hidden {
     padding: 15px 25px;
     transition: 0.3s;
     margin-top: 5px;
+    margin-right: 10px;
 
     &:hover {
       background-color: rgb(135, 47, 218);
       box-shadow: 0px 0px 5px rgb(73, 13, 129);
     }
   }
-  #cancelEdit {
-    background-color: #9e9e9e;
-    color: black;
 
-    &:hover {
-      background-color: #aaaaaa;
-      box-shadow: 0px 0px 5px #6b6b6b;
+  #cancelAddDay, #cancelAddTask, #cancelEdit{
+    background-color: #eb1f1f;
+
+    &:hover{
+      background-color: #f02828;
+      box-shadow: 0px 0px 5px rgb(129, 13, 13);
     }
   }
 }
@@ -397,11 +420,22 @@ div.hidden {
     }
 
     #delete-day-confirm-btn {
-      background-color: rgb(26, 70, 26);
+      background-color: rgb(54, 167, 54);
+      transition: .2s;
+
+      &:hover{
+        background-color: rgb(64, 207, 64);
+        box-shadow: 0 0 5px rgb(64, 207, 64);
+      }
     }
 
     #delete-day-cancel-btn {
-      background-color: rgb(109, 36, 21);
+      background-color: rgb(206, 41, 29);
+      transition: .2s;
+      &:hover{
+        background-color: rgb(245, 43, 43);
+        box-shadow: 0 0 5px rgb(245, 43, 43);;
+      }
     }
   }
 }

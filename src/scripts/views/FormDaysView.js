@@ -14,9 +14,11 @@ class FormDaysView extends FormView {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
       const date = e.target[0].value;
+      console.log(date);
 
       handler(date);
       this._hiddenForm();
+      document.getElementById("new-day").value = '';
     });
   }
 }

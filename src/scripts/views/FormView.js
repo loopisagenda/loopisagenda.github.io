@@ -4,6 +4,8 @@ class FormView {
   _data;
   _actBtn;
   _formElement;
+  _cancelAddDay = document.getElementById("cancelAddDay");
+  _cancelAddTask = document.getElementById("cancelAddTask");
 
   //mostra o formulário
   _showForm() {
@@ -24,6 +26,12 @@ class FormView {
   _handleKeyEvent() {
     window.addEventListener("keydown", (e) => {
       if (e.key == "Escape") this._hiddenForm();
+    });
+    this._cancelAddDay.addEventListener('click', () => {
+      this._hiddenForm();
+    });7
+    this._cancelAddTask.addEventListener('click', () => {
+      this._hiddenForm();
     });
   }
 }
