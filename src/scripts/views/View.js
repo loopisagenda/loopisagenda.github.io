@@ -1,5 +1,6 @@
 //Essa é a classe pai de todas as views exceto os formulários
 class View {
+  
   //cada classe herdeira tem o seu próprio elemento pai e seus próprios dados
   _parentElement;
   _data;

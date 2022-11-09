@@ -1,5 +1,6 @@
 //Essa é a classe pai de todos os formulários
 class FormView {
+  
   _parentElement;
   _data;
   _actBtn;

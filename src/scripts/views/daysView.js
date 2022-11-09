@@ -17,7 +17,6 @@ class DaysView extends View {
   //gera o html de cada dia e o insere na lista
   _generateHtml() {
     this._clear();
-
     const days = this._data;
 
     // imprime na tela os dias de tarefas
@@ -39,7 +38,7 @@ class DaysView extends View {
   handleLoadEvent(handler) {
     window.addEventListener("load", () => handler());
   }
-
+  
   /**
    *
    * obersa por um click na lista dos dias e observa se o ponto clicado é um dia ou um botão de deletar dia. Se foi um

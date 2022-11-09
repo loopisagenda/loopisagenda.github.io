@@ -13,6 +13,7 @@ class AddTaskView extends FormView {
   handleSubmitEvent(handler) {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
+      
       const form = e.target;
       const tskTitle = form[0].value;
       const tskDescription = form[1].value;

@@ -10,7 +10,6 @@ class TasksView extends View {
   _cancelDelTaskBtn = document.getElementById("cancelDelete");
   _titleTaskForm = document.getElementById("receptTaskName");
   _currentDay = document.getElementById("current-day-container");
-  //_container = document.getElementById("tasks-container");
   _actBtn = document.getElementById("add-task-btn");
   _currentDate = "";
   _warningDeleteTask = document.getElementById("delete-task-warning");
@@ -79,9 +78,7 @@ class TasksView extends View {
         document.getElementById("editDescription").value = taskDescription;
         document.getElementById("dateEdit").value = ((year+'-'+month+'-'+day).toString());
 
-      } else if (
-        e.target.closest("button")?.classList.contains("delete-task-btn")
-      ) {
+      } else if (e.target.closest("button")?.classList.contains("delete-task-btn")) {
         document.getElementById("receptTaskNameDelete").textContent = taskTitle;
         this._currentTaskId = task.id;
         this._showWarningDelete();
@@ -101,6 +98,7 @@ class TasksView extends View {
   handleSubmitEditFormEvent(handler) {
     this._editTaskForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      
       const newTasktitle = e.target[0].value;
       const newTaskDescription = e.target[1].value;
       const newTaskDate = e.target[2].value;

@@ -13,6 +13,7 @@ class FormDaysView extends FormView {
   handleSubmitEvent(handler) {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
+      
       const date = e.target[0].value;
       console.log(date);
 

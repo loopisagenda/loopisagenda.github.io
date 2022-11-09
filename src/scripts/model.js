@@ -6,35 +6,35 @@ export const state = {
 };
 
 //seta no localStorage o estado mais atual
-function setLocalData() {
+const setLocalData = () => {
   localStorage.setItem("data", JSON.stringify(state.days));
 }
 
 //formata a data para o formato estadunidense
-function getFormattedDateUSA(date) {
+const getFormattedDateUSA = (date) => {
   return `${date.substr(5, 2)}/${date.substr(8, 2)}/${date.substr(0, 4)}`;
 }
 
 //formata a data para o formato brasileiro
-function getFormattedDateBRA(date) {
+const getFormattedDateBRA = (date) => {
   return `${date.substr(8, 2)}/${date.substr(5, 2)}/${date.substr(0, 4)}`;
 }
 
 //calcula a diferença de dias entre duas datas
-function getDiffDays(date1, date2Data) {
-  const date2 = new Date(
-    `${date2Data.month}/${date2Data.day}/${date2Data.year}`
-  );
+const getDiffDays = (date1, date2Data) => {
+  const date2 = new Date(`${date2Data.month}/${date2Data.day}/${date2Data.year}`);
 
   const diffTime = date2 - date1;
   const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
+
   return diffDays;
 }
 
 //pega a data atual, manda para getDiffDays a data em questão para calcular a diferença de dias e gera uma string apropriada
-function getDiffProp(date) {
+const getDiffProp = (date) => {
   const currentDate = new Date();
   const diffDays = getDiffDays(currentDate, date);
+  
   if (diffDays == 0) {
     return "Hoje";
   } else if (diffDays == 1) {
@@ -48,21 +48,21 @@ function getDiffProp(date) {
 }
 
 //gera uma propriedade sumSort para ordenamento do array
-function generateSumSort(day, month, year) {
+const generateSumSort = (day, month, year) => {
   const strDay = String(day).padStart(2, "0");
   const strMonth = String(month).padStart(2, "0");
   const strYear = String(year).padStart(2, "0");
 
   const strSumSort = String(strYear + strMonth + strDay);
-
   const sumSort = Number(strSumSort);
 
   return sumSort;
 }
 
 //pega a data do localStorage no primeiro carregamento caso exista
-export function getData() {
+export const getData = () => {
   const data = JSON.parse(localStorage.getItem("data")) || "";
+
   if (data != "") {
     state.days = data;
     state.days.forEach((day) => (day.diff = getDiffProp(day)));
@@ -70,7 +70,7 @@ export function getData() {
 }
 
 //recebe uma data no formato yyyy-mm-d, separa em propiedades, gera um id aleatório para o dia e o adiciona no estado
-export function addDay(stringDate) {
+export const addDay = (stringDate) => {
   //tira a duplicação de dias na aba dias de tarefas
   let duplicated;
 
@@ -116,18 +116,18 @@ export function addDay(stringDate) {
 }
 
 //deleta um dia com um id específico
-export function removeDay(dayId) {
+export const removeDay = (dayId) => {
   state.days = state.days.filter((day) => day.id != dayId);
   setLocalData();
 }
 
 //muda o dia alvo
-export function setTargetDay(dayId) {
+export const setTargetDay = (dayId) => {
   state.targetDay = state.days.find((day) => day.id == dayId);
 }
 
 //adiciona uma tarefa no dia alvo (target day)
-export function addTask(taskTitle, taskDescription) {
+export const addTask = (taskTitle, taskDescription) => {
   const tskObj = {
     title: taskTitle,
     description: taskDescription,
@@ -140,7 +140,7 @@ export function addTask(taskTitle, taskDescription) {
 }
 
 //remove uma tarefa
-export function deleteTask(taskId) {
+export const deleteTask = (taskId) => {
   let dayIndex, dayId;
 
   state.days.forEach((day, dayi) => {
@@ -161,14 +161,14 @@ export function deleteTask(taskId) {
 }
 
 //o processo de editar task na vedade é deletar a tarefa e recriá-la
-export function editTask(
+export const editTask = (
   newTaskTitle,
   newTaskDescription,
   newTaskDate,
   taskId
-) {
-  deleteTask(taskId);
-  let duplicated = false;
+) => {
+    deleteTask(taskId);
+    let duplicated = false;
 
   //separa a string newTaskDate em variáveis
   const date = new Date(getFormattedDateUSA(newTaskDate));
