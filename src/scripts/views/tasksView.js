@@ -30,12 +30,14 @@ class TasksView extends View {
       this._parentElement.innerHTML += `<li id="${task.id}" class="task">
             <h2>${task.title}</h2>
             <p>${task.description}</p>
-            <button type="button" class="edit-task-btn">
-              <img src="${editIcon}" alt="" />
-            </button>
-            <button type="button" class="delete-task-btn">
-              <img src="${deleteIcon}" alt="" />
-            </button>
+            <span>
+              <button type="button" class="edit-task-btn">
+                <img src="${editIcon}" alt="" />
+              </button>
+              <button type="button" class="delete-task-btn">
+                <img src="${deleteIcon}" alt="" />
+              </button>
+            </span>
           </li>`;
     });
   }
@@ -46,14 +48,12 @@ class TasksView extends View {
       date.month
     ).padStart(2, "0")}/${date.year}`;
     this._currentDay.textContent = `Atividades do dia: ${this._currentDate}`;
-    //this._container.classList.remove("hidden");
     this._actBtn.classList.remove("hidden");
     this._clear();
   }
 
   //oculta o container das tarefas
   hiddeContainer() {
-   // this._container.classList.add("hidden");
     this._actBtn.classList.add("hidden");
   }
 
@@ -69,16 +69,25 @@ class TasksView extends View {
         this._titleTaskForm.textContent = `Atividade: ${taskTitle}`;
         this._currentTaskId = task.id;
 
-        const date = document.getElementById("current-day-container").textContent;
-        let day = date.substring(19,21);
-        let month = date.substring(22,24);
-        let year = date.substring(25,29);
+        const date = document.getElementById(
+          "current-day-container"
+        ).textContent;
+        let day = date.substring(19, 21);
+        let month = date.substring(22, 24);
+        let year = date.substring(25, 29);
 
         document.getElementById("editTaskName").value = taskTitle;
         document.getElementById("editDescription").value = taskDescription;
-        document.getElementById("dateEdit").value = ((year+'-'+month+'-'+day).toString());
-
-      } else if (e.target.closest("button")?.classList.contains("delete-task-btn")) {
+        document.getElementById("dateEdit").value = (
+          year +
+          "-" +
+          month +
+          "-" +
+          day
+        ).toString();
+      } else if (
+        e.target.closest("button")?.classList.contains("delete-task-btn")
+      ) {
         document.getElementById("receptTaskNameDelete").textContent = taskTitle;
         this._currentTaskId = task.id;
         this._showWarningDelete();
@@ -98,7 +107,7 @@ class TasksView extends View {
   handleSubmitEditFormEvent(handler) {
     this._editTaskForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      
+
       const newTasktitle = e.target[0].value;
       const newTaskDescription = e.target[1].value;
       const newTaskDate = e.target[2].value;
