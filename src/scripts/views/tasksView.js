@@ -11,6 +11,7 @@ class TasksView extends View {
   _titleTaskForm = document.getElementById("receptTaskName");
   _currentDay = document.getElementById("current-day-container");
   _actBtn = document.getElementById("add-task-btn");
+  _container = document.getElementById("tasks-container");
   _currentDate = "";
   _warningDeleteTask = document.getElementById("delete-task-warning");
 
@@ -43,18 +44,26 @@ class TasksView extends View {
   }
 
   //mostra o container das tarefas e ajusta a data corretamente
-  showContainer(date) {
+  updateContainer(date) {
     this._currentDate = `${String(date.day).padStart(2, "0")}/${String(
       date.month
     ).padStart(2, "0")}/${date.year}`;
     this._currentDay.textContent = `Atividades do dia: ${this._currentDate}`;
+    this._container.classList.remove("hidden");
     this._actBtn.classList.remove("hidden");
     this._clear();
   }
 
   //oculta o container das tarefas
-  hiddeContainer() {
+  hiddeActionButton() {
+    // this._container.classList.add("hidden");
     this._actBtn.classList.add("hidden");
+  }
+
+  showInitialMessage() {
+    this._clear();
+    this._currentDay.textContent = `Selecione um dia, ou crie um novo clicando em "+" no menu lateral,
+          para mostras todas as tarefas relacionadas.`;
   }
 
   //observa um clique do elemento pai e informa ao controller se o que foi clicado é o botão de editar ou de excluir

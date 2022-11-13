@@ -9,39 +9,40 @@ import tasksView from "./views/tasksView.js";
 const controlDays = () => {
   model.getData();
   DaysView.render(model.state.days);
-}
+};
 
 //controlea o funcionamento de adicionar dias
 const controlAddDay = (date) => {
   model.addDay(date);
   DaysView.render(model.state.days);
-}
+};
 
 //controla o funcionamento de deletar dias
 const controlDeleteDay = (dayId) => {
   model.removeDay(dayId);
   DaysView.render(model.state.days);
-  TasksView.hiddeContainer();
-}
+  tasksView.hiddeActionButton();
+  TasksView.showInitialMessage();
+};
 
 //controla o funcionamento de mudar o dia em questão
 const controlCurrentDay = (dayId) => {
   model.setTargetDay(dayId);
-  TasksView.showContainer(model.state.targetDay);
+  TasksView.updateContainer(model.state.targetDay);
   tasksView.render(model.state.targetDay.tasks);
-}
+};
 
 //controla o funcionamento de adicionar tarefas
 const controlAddTask = (taskTitle, taskDesctiption) => {
   model.addTask(taskTitle, taskDesctiption);
   TasksView.render(model.state.targetDay.tasks);
-}
+};
 
 const controlDeleteTask = (taskId) => {
   model.deleteTask(taskId);
   TasksView.render(model.state.targetDay.tasks);
   DaysView.render(model.state.days);
-}
+};
 
 const controlEditTask = (
   newTaskTitle,
@@ -49,11 +50,11 @@ const controlEditTask = (
   newTaskDate,
   taskId
 ) => {
-    model.editTask(newTaskTitle, newTaskDescription, newTaskDate, taskId);
-    TasksView.showContainer(model.state.targetDay);
-    DaysView.render(model.state.days);
-    TasksView.render(model.state.targetDay.tasks);
-}
+  model.editTask(newTaskTitle, newTaskDescription, newTaskDate, taskId);
+  TasksView.updateContainer(model.state.targetDay);
+  DaysView.render(model.state.days);
+  TasksView.render(model.state.targetDay.tasks);
+};
 
 const init = () => {
   DaysView.handleLoadEvent(controlDays);
@@ -63,6 +64,6 @@ const init = () => {
   TasksView.handleSubmitEditFormEvent(controlEditTask);
   FormDaysView.handleSubmitEvent(controlAddDay);
   FormTasksView.handleSubmitEvent(controlAddTask);
-}
+};
 
 init();

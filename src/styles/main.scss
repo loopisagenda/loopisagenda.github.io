@@ -185,7 +185,7 @@ main {
 
     li {
       background-color: #afafaf;
-      border-radius: 50px;
+      border-radius: 8px;
       display: flex;
       flex-direction: row;
       font-weight: bold;
@@ -204,12 +204,17 @@ main {
 
       p {
         background-color: rgb(233, 232, 232);
-        border-radius: 50px;
+        border-radius: 8px;
         font-size: 1rem;
         font-weight: normal;
         margin-left: 10px;
         margin-right: 10px;
         padding: 8px;
+        text-align: justify;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
         width: 60%;
       }
     }
@@ -491,6 +496,10 @@ div#overlay-close-side-menu {
 }
 
 @media screen and (max-width: 768px) {
+  body {
+    background: #6350b9;
+  }
+
   #days-container {
     background-color: #787fe5;
     height: 100vh;
@@ -517,7 +526,6 @@ div#overlay-close-side-menu {
     height: 100vh;
     padding: 50px 10px;
     width: 100vw;
-
     ul {
       width: 100%;
 
