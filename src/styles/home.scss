@@ -5,71 +5,82 @@ body {
   background-size: cover;
   color: #f5f5f5;
   min-height: 100vh;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
-.container{
-  width: 100%;
-  min-height: 100vh;
+.container {
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  gap: 50px;
   justify-content: center;
+  min-height: 100vh;
   text-align: center;
+  width: 100%;
 
-  div{
-    margin-right: 5rem;
+  div {
     width: 300px;
 
     h1 {
-      width: 300px;
       font-size: 60px;
       text-shadow: 3px 3px 0px black;
-      line-height: 55px;
+      width: 300px;
     }
 
     p {
       font-size: 20px;
-      margin: 50px auto;
       line-height: 24px;
+      margin: 50px auto;
       text-shadow: 1px 1px 0px black;
     }
 
     button {
-      margin-top: 30px;
       background: rgb(223, 96, 57);
+      border-radius: 50px;
       border: none;
       color: #f5f5f5;
       cursor: pointer;
-      font-weight: bold;
       font-size: 25px;
-      transition: .5s;
+      font-weight: bold;
+      margin-top: 30px;
       padding: 15px 50px;
-      border-radius: 50px;
+      transition: 0.5s;
     }
 
-    button:hover{
+    button:hover {
       background-color: rgb(233, 112, 32);
       box-shadow: 0px 0px 15px rgb(209, 108, 41);
     }
   }
 
   .imgPage {
-    margin-left: 7rem;
-    max-width: 750px;
+    max-width: 600px;
     min-width: 300px;
     width: 50%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  main {
+  .container {
+    padding: 30px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     div,
     p,
-    h1 {
+    h1,
+    picture.imgPage {
       margin: 0;
-      padding: 0 20px;
       text-align: center;
       width: 100%;
     }
