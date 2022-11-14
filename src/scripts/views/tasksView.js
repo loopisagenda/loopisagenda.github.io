@@ -60,10 +60,9 @@ class TasksView extends View {
     this._actBtn.classList.add("hidden");
   }
 
-  showInitialMessage() {
+  showOkMessage() {
     this._clear();
-    this._currentDay.textContent = `Selecione um dia, ou crie um novo clicando em "+" no menu lateral,
-          para mostras todas as tarefas relacionadas.`;
+    this._currentDay.textContent = `Dia deletado com sucesso!`;
   }
 
   //observa um clique do elemento pai e informa ao controller se o que foi clicado é o botão de editar ou de excluir

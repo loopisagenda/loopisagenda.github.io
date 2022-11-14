@@ -22,7 +22,7 @@ const controlDeleteDay = (dayId) => {
   model.removeDay(dayId);
   DaysView.render(model.state.days);
   tasksView.hiddeActionButton();
-  TasksView.showInitialMessage();
+  TasksView.showOkMessage();
 };
 
 //controla o funcionamento de mudar o dia em questão

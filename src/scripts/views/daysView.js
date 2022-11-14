@@ -22,6 +22,15 @@ class DaysView extends View {
       this._hiddeContainer.bind(this)
     );
     this._addDayBtn.addEventListener("click", this._hiddeContainer.bind(this));
+
+    //
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        this._showContainer();
+      } else {
+        this._hiddeContainer();
+      }
+    });
   }
 
   //gera o html de cada dia e o insere na lista
@@ -90,18 +99,17 @@ class DaysView extends View {
 
   //mostra o menu lateral em telas menores
   _showContainer() {
-    if(window.screen.width <= 768){
-      this._container.style.transform = "translateX(0)";
+    this._container.style.transform = "translateX(0)";
+    if (window.innerWidth <= 768) {
       this._overlayCloseMenu.style.display = "block";
     }
   }
   //esconde o menu lateral em telas menores
   _hiddeContainer() {
-    if(window.screen.width <= 768){
+    if (window.innerWidth <= 768) {
       this._container.style.transform = "translateX(-100%)";
       this._overlayCloseMenu.style.display = "none";
     }
-    
   }
 
   //mostra o aviso de remoção
